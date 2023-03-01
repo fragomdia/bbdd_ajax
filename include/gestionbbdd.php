@@ -34,6 +34,23 @@ class GestionBBDD {
         }
     }
 
+    public static function opositor($dni) {
+        try {
+            $sql="select * from opositores where dniopo = :n_dni";
+            $conexion=self::realizarConexion();
+            $resultado=$conexion->prepare($sql);
+            $resultado->bindParam(':n_dni', $dni);
+            $resultado->execute();
+            $fila = $resultado->fetch();
+            $opositor = new Opositor($fila);
+            $resultado->closeCursor();
+		    $conexion=null;
+            return ($opositor);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }
 
 ?>

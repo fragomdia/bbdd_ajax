@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        #mostrarDatos {
+            margin-top: 1rem;
+        }
+        td, th {
+            border: 1px solid black;
+            min-width: 75px;
+            padding: 0 .25rem;
+            text-align: start;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label>Datos alumnos por DNI:</label>
+        <input type="text" name="codigo" id="codigo"/>
+        <button type="submit" id="enviar">Cargar datos</button>
+    </div>
+    <div id="mostrarDatos">
+        <table>
+            <tr>
+                <th>DNI</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Teléfono</th>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        $("#enviar").click(function(){
+            let palabra = $("#codigo").val()
+            $.ajax({
+                data: {palabra:palabra},
+                url: "datosOpositor.php",
+                type: "post",
+                success: function(resultado) {
+                    $("table").remove()
+                    $("#mostrarDatos").append(resultado)
+                }
+            })
+        })
+    </script>
+</body>
+</html>
