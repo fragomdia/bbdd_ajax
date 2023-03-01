@@ -11,42 +11,53 @@
             margin: 0;
             box-sizing: border-box;
         }
-        h1 {
-            background-color: lightgray;
-            padding: 1rem;
-            text-align: center;
-            margin-bottom: .5rem;
-        }
         table {
-            width: 60%;
-            margin: 0 auto;
+            width: 98%;
+            margin: .25rem auto;
             text-align: center;
+            visibility: hidden;
         }
         .cabecera td {
             background-color: orange;
+        }
+        .cuerpo td {
+            background-color: rgb(247, 208, 135);
+        }
+        #mostrarDatos {
+            width: 60%;
+            height: 450px;
+            border: 1px solid red;
+            border-radius: 5px;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
         }
     </style>
     <title>Document</title>
 </head>
 <body>
-    <h1>Listado de opositores</h1>
-    <table>
-        <tr class="cabecera">
-            <td>DNI</td>
-            <td>Nombre</td>
-            <td>Ciudad</td>
-            <td>Código Postal</td>
-            <td>Teléfono</td>
-            <td>Tribunal</td>
-        </tr>
-    </table>
+    <button type="submit" onclick="mostrar()">MOSTRAR TABLA ID</button>
+    <div id="mostrarDatos">
+        <table>
+            <tr class="cabecera">
+                <td>DNI</td>
+                <td>Nombre</td>
+                <td>Ciudad</td>
+                <td>Código Postal</td>
+                <td>Teléfono</td>
+                <td>Tribunal</td>
+            </tr>
+        </table>
+    </div>
     <script>
-        ajax({
-            url: "include/gestionbbdd.php",
-            success: function() {
-                
-            }
-        })
+        function mostrar() {
+            $.ajax({
+                url: "datos.php",
+                success: function(resultado) {
+                    $("table").css("visibility", "visible")
+                    $("table").append(resultado)
+                }
+            })
+        }
     </script>
 </body>
 </html>
