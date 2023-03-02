@@ -42,7 +42,10 @@ class GestionBBDD {
             $resultado->bindParam(':n_dni', $dni);
             $resultado->execute();
             $fila = $resultado->fetch();
-            $opositor = new Opositor($fila);
+            $opositor = null;
+            if ($fila != null) {
+                $opositor = new Opositor($fila);
+            }
             $resultado->closeCursor();
 		    $conexion=null;
             return ($opositor);

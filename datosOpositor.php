@@ -7,7 +7,7 @@ error_reporting(0);
 
 $opo = GestionBBDD::opositor($dni);
 
-if ($dni == null) {
+if ($opo == null) {
     echo "<table><tr><th>DNI</th><td>Sin resultado</td></tr>
     <tr><th>Nombre</th><td>Sin resultado</td></tr>
     <tr><th>Teléfono</th><td>Sin resultado</td></tr></table>";
